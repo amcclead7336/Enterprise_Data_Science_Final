@@ -4,6 +4,7 @@ from flasgger import Swagger
 import pickle
 import pandas as pd
 
+
 # Load the pickled CA Houseprice regression model
 model_filename = "../random-forest-model/model.pkl"
 
