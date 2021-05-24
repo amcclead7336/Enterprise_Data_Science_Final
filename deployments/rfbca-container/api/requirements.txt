@@ -2,4 +2,4 @@ flask
 flasgger
 scikit-learn
 pandas
-cloudpickle
+pickle5

@@ -1,15 +1,13 @@
 from flask import Flask, request
 # TO generate UI for sending request via browser
 from flasgger import Swagger
-import pickle
+import pickle5 as pickle
 import pandas as pd
 
 
-# Load the pickled CA Houseprice regression model
-model_filename = "../random-forest-model/model.pkl"
-
 # Load model from file - read mode
-with open("../random_forest_model/model.pkl", 'rb') as file:
+with open("../LogisticRegression-model/model.pkl", 'rb') as file:
+
     bca_model = pickle.load(file)
 
 app = Flask(__name__)
