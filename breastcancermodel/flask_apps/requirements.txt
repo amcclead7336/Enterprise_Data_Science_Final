@@ -1,0 +1,5 @@
+flask
+flasgger
+scikit-learn
+pandas
+pickle5

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: breastcancer-prediction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: breastcancer-prediction
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: breastcancer-prediction
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: breastcancer-prediction
+        image: cis325registrydemo.azurecr.io/breastcancer-api
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: breastcancer-prediction
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+  selector:
+    app: breastcancer-prediction
