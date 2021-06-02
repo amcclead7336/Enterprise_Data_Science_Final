@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bca-api-prediction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bca-api-prediction
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: bca-api-prediction
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: bca-api-prediction
+        image: cisfinalcr.azurecr.io/bca-api
+        ports:
+        - containerPort: 5010
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bca-api-prediction
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5010
+  selector:
+    app: bca-api-prediction
