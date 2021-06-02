@@ -102,7 +102,7 @@ classification
 8. Configure the Kubernetes cluster
    - Create YAML file
    - Assign name of the deployment to the appropriate assignments
-   - Assign name of the Container Registry to the “containers: image: <name of Container Registry>.azurecr.io/<name of the deployment> of YAML file
+   - Assign name of the Container Registry to the “containers: image: <name of Container Registry>.azurecr.io/<name of the deployment>" of YAML file
    - Assign port, if other different than 5000
    - Capture assigned External IP Address
 
